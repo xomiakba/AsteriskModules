@@ -1,0 +1,24 @@
+Copy cdr_realtime.c to =AsteriskSrc=/cdr/ path, enable module in menuconfig and compile asterisk.
+
+Create config cdr_realtime.conf
+
+[general]
+engine = CDR
+filter=no
+
+[columns]
+calldate => ${CDR(start)}
+src => ${CDR(src)}
+dst => ${CDR(dst)}
+billsec => ${CDR(billsec)}
+duration => ${CDR(duration)}
+status => ${CDR(disposition)}     
+
+
+
+
+general/engine - name of realtime engine in extconfig.conf
+general/filter - if yes, then commit to engine only CDR where amaflags=BILLING
+
+In section columns list collumn alias. 
+You must use only var CDR, example ${CDR(var_name)} and standart asterisk functions.
